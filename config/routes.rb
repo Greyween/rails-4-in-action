@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'projects#index'
+  get "/signin", to: "sessions#new"
+  post "/signin", to: "sessions#create"
 
   resources :users
   resources :projects do
