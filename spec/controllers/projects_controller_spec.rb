@@ -1,6 +1,7 @@
 require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe ProjectsController, type: :controller do
+describe ProjectsController do
 
 	it "displays an error for a missing project" do
 		get :show, id: "not-here"
