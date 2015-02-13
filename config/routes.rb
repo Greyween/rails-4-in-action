@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   get "/signin", to: "sessions#new"
   post "/signin", to: "sessions#create"
 
+  namespace :admin do
+    resources :users
+  end
+
   resources :users
+    
   resources :projects do
     resources :tickets
   end  
