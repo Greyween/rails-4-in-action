@@ -5,7 +5,7 @@ describe User do
   describe "passwords" do
 
   	it "needs a password and confirmation to save" do
-  		user = User.new(name: "Steve")
+  		user = User.new(name: "Steve", email: "steve@example.com")
   		user.save
   		expect(user).to_not be_valid
   		user.password = "password"
@@ -37,5 +37,14 @@ describe User do
 		it "does not authenticate with an incorrect password" do
 			expect(user.authenticate("hunter")).to_not be
 		end
-	end												  					
+	end
+
+	it "requires an email" do
+		user = User.new(name: "Steve", password: "hunter2", password_confirmation: "hunter2")
+		user.save
+		expect(user).to_not be_valid
+		user.email = "steve@example.com"
+		user.save
+		expect(user).to be_valid
+	end													  					
 end
