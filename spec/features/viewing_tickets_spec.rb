@@ -6,16 +6,19 @@ feature "Viewing tickets" do
 	before do
 		textmate_2 = FactoryGirl.create(:project, name: "TextMate 2")
 		user = FactoryGirl.create(:user)
+		define_permission!(user, "view", textmate_2)
 		ticket = FactoryGirl.create(:ticket, 
 																project: textmate_2, 
 																title: "Make it shiny!", 
 																description: "Gradients! Starbursts! Oh my!")
 		ticket.update(user: user)
 		internet_explorer = FactoryGirl.create(:project, name: "Internet Explorer")
+		define_permission!(user, "view", internet_explorer)
 		FactoryGirl.create(:ticket, 
 												project: internet_explorer, 
 												title: "Standards compliance", 
 												description: "Isn't joke.")
+		sign_in_as!(user)
 		visit '/'
 	end
 	
