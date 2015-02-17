@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 feature "Editing a user" do
 	let!(:admin_user) { FactoryGirl.create(:admin_user) }

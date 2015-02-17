@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe ProjectsController do
 	let(:user) { FactoryGirl.create(:user) }

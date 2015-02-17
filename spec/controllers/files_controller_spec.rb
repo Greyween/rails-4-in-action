@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe FilesController do
 	let(:good_user) { FactoryGirl.create(:user) }

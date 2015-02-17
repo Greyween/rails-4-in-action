@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 feature "Deleting users" do
 	let!(:admin_user) { FactoryGirl.create(:admin_user) }

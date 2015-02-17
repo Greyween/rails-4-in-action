@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 feature "hidden links" do
 	let(:user) { FactoryGirl.create(:user) }

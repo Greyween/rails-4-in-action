@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 feature "Editing tickets" do 
 	let!(:project) { FactoryGirl.create(:project) }

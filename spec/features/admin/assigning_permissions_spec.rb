@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 feature "Assigning permissions" do
 	let!(:admin) { FactoryGirl.create(:admin_user) }

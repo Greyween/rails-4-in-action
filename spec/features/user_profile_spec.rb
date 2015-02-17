@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 feature "Profile page" do
 	let!(:user) { FactoryGirl.create(:user) }
