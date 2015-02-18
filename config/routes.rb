@@ -25,6 +25,10 @@ Rails.application.routes.draw do
     resources :tickets
   end
 
+  resources :tickets do
+    resources :comments
+  end  
+
   resources :files  
 
   # Example of regular route:
