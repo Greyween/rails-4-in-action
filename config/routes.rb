@@ -10,13 +10,14 @@ Rails.application.routes.draw do
   delete "/signout", to: "sessions#destroy", as: "signout"
 
   namespace :admin do
-    root :to => "base#index"
+    root to: "base#index"
     resources :users do
       resources :permissions
 
       put "permissions", to: "permissions#set", 
                          as: "set_permissions"
-    end  
+    end
+    resources :states  
   end
 
   resources :users
