@@ -49,6 +49,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver', '>= 2.45.0.dev3'
 	gem 'database_cleaner'
+	gem 'email_spec'	
 end
 
 group :test do
