@@ -2,8 +2,6 @@ class Ticket < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
   belongs_to :state
-  validates :title, presence: true
-  validates :description, presence: true, length: { minimum: 10 }
   has_many :assets
   has_many :comments
   has_and_belongs_to_many :tags
@@ -12,7 +10,26 @@ class Ticket < ActiveRecord::Base
 
   accepts_nested_attributes_for :assets
 
+  validates :title, presence: true
+  validates :description, presence: true, length: { minimum: 10 }
+
   before_create :associate_tags
+
+  def self.search(query)
+  	terms = {}
+  	query.split(" ").map do |query|
+  		k, v = query.split(":")
+  		terms[k] = v
+  	end
+  	relation = all
+  	if terms.has_key?("tag")
+  		relation = joins(:tags).where("tags.name = ?", terms['tag'])		
+  	end
+  	if terms.has_key?("state")
+  		relation = joins(:state).where("state.name = ?", terms['state'])		
+  	end
+  	relation	
+  end
 
   private
 
