@@ -3,16 +3,25 @@ require 'rails_helper'
 feature "Searching" do
 	let!(:user) { FactoryGirl.create(:user) }
 	let!(:project) { FactoryGirl.create(:project) }
-	let!(:ticket_1) { FactoryGirl.create(:ticket, 
-																				title: "Create projects", 
-																				project: project, 
-																				user: user, 
-																				tag_names: "iteration_1") }
-	let!(:ticket_2) { FactoryGirl.create(:ticket, 
-																				title: "Create users", 
-																				project: project, 
-																				user: user, 
-																				tag_names: "iteration_2") }
+	let!(:ticket_1) do
+		state = State.create(name: "Open") 
+		FactoryGirl.create(:ticket, 
+												title: "Create projects", 
+												project: project, 
+												user: user, 
+												tag_names: "iteration_1",
+												state: state)
+	end
+		
+	let!(:ticket_2) do
+		state = State.create(name: "Closed") 
+		FactoryGirl.create(:ticket, 
+												title: "Create users", 
+												project: project, 
+												user: user, 
+												tag_names: "iteration_2",
+												state: state)
+	end	
 
 	before do
 		define_permission!(user, "view", project)
@@ -30,4 +39,13 @@ feature "Searching" do
 			expect(page).to_not have_content("Create users")
 		end
 	end
+
+	scenario "Finding by state" do
+		fill_in "Search", with: "state:Open"
+		click_button "Search"
+		within("#tickets") do
+			expect(page).to have_content("Create projects")
+			expect(page).to_not have_content("Create users")
+		end
+	end		 
 end				
