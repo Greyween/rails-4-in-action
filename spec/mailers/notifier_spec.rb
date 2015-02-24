@@ -27,5 +27,10 @@ describe Notifier do
 			expect(email.body).to include("#{comment.user.email} wrote:")
 			expect(email.body).to include(comment.text)
 		end
+
+		it "Correctly sets the Reply-To" do
+			address = "youraccount+#{project.id}+#{ticket.id}@gmail.com"
+			expect(email.reply_to).to eql([address])
+		end	
 	end
 end					
