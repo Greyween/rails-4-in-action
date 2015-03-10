@@ -11,8 +11,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -33,8 +31,12 @@ gem 'carrierwave'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+group :development do
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+  gem 'capistrano-rails'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', platforms: :ruby
+end 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
